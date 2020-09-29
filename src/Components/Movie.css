@@ -1,6 +1,6 @@
-.movieList{
+#movieList{
 	display: flex;
-	
+	flex-wrap: wrap;
 }
 
 .movie {
@@ -10,6 +10,7 @@
 	padding: 10px 16px;
 	border: 1px solid black;
 	max-width: 400px;
+	min-width: 380px;
 }
 
 
@@ -51,8 +52,6 @@
 }
 
 
-.watchButton {
-}
 
 .watchButton > .trailer {
 	display: block;
