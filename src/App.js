@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link, Route, Switch} from 'react-router-dom';
-import './App.css'; // fill it
+
 
 import Login from './Components/Login';
 import Signup from './Components/Signup';
@@ -21,7 +21,7 @@ function App() {
 
   function updateStore(user) {
     users.push(user);
-    // console.log(store.user);
+    console.log(users);
     localStorage.setItem("user", JSON.stringify(users))
   }
 
@@ -44,6 +44,7 @@ function App() {
         <Link className="link" to="/login">Login</Link>
         </div>
       <Switch>
+      <Route component={() => <Signup register={updateStore} user={users}/>} exact path="/" />
         <Route component={() => <Signup register={updateStore} user={users}/>} exact path="/signup" />
         <Route component={() => <Login user={users} logedIn={signIn}/>} exact path="/login" />
       </Switch>

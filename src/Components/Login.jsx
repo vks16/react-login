@@ -1,25 +1,19 @@
 import React, {useState, useEffect} from 'react';
 
-//import axios from 'axios';
-
+import {passwordMatch, userExists} from '../utilities';
 
 
 function Login(props) {
 	const [login, setLogin] = useState(false);
 	
-	function userExists(email){
-		return props.user.some((el) => el.Email === email)
-	}
-
-	function passwordMatch(pass) {
-		return props.user.some((el) => el.Password === pass)
-	}
+	
 
 	function checkLogin(e){
 		e.preventDefault();
 		
-		if(userExists(e.target.email.value)){
-			if(passwordMatch(e.target.password.value)){
+		if(userExists(props, e.target.email.value)){
+			
+			if(passwordMatch(props, e.target.password.value)){
 				setLogin(true);
 	
 				

@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Redirect} from 'react-router-dom';
+import {encrypt, userExists} from '../utilities';
+
 
 function Signup(props) {
 	const [signedUp, setSignedUp] = useState(false);
@@ -7,18 +9,20 @@ function Signup(props) {
     function createAccount(e) {
         e.preventDefault();
         
-        function userExists(email){
-            return props.user.some((el) => el.Email === email)
-        }
+        
 
         if (e.target.pwd1.value !== e.target.pwd2.value) {
             alert("Mismatch password!");
-        }else if (userExists(e.target.email.value)){
+        }else if (userExists(props, e.target.email.value)){
             alert("Already registered with this email address.");
         }else {
-            props.register({
+            console.log(encrypt(e.target.email.value, e.target.pwd1.value));
+	    
+
+
+	    props.register({
                 Name: e.target.name.value,
-                Password: e.target.pwd1.value,
+                Password: encrypt(e.target.email.value, e.target.pwd1.value),
                 Email: e.target.email.value,
                 PhoneNo: e.target.phone.value,
                 Profession: e.target.profession.value,

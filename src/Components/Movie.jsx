@@ -99,7 +99,7 @@ function MovieList() {
 	})
 	.catch(err => console.log(err));
 	
-	useEffect(() => console.log(movies), [movies]);
+	useEffect(() => console.log("updated"), [movies]);
 	
 	// {movies.map(m => <Movie key={m._id} movie={m} />)}
 	return (
